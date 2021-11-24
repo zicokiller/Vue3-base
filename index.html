@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue3 Checklist</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>The Checklist</h1>
+      <h2>{{message1}}</h2>
+      <!-- v-model pour passer des data depuis l'input en runtime -->
+      <input type="text" v-model="message" placeholder="entrez un message" />
+      <a href="#" @click="addNote" v-if="message != ''">Ajouter</a>
+      {{message}}
+      <p v-bind:title="message" v-for="todo in todos" :key="todo.id">
+        {{todo}}
+      </p>
+      <!-- Appel des func avec @click -->
+      <button @click="reverseNote">Reverse Note</button>
+      <button @click="deleteNote">Delete Note</button>
+      <!-- Création d'un composant -->
+      <note v-for="todo in todos" v-bind:content="todo" :key="todo.id"></note>
+    </div>
+
+    <!-- <script>
+      const vm = Vue.createApp({
+        data() {
+          return {
+            message: "",
+            message1: "Hello Vue3!",
+            todos: ["Jouer de la gratte", "Diner", "Coder du Vue3"],
+          };
+        },
+        methods: {
+          reverseNote() {
+            this.todos.reverse();
+          },
+          addNote() {
+            this.todos.push(this.message);
+            this.message = "";
+          },
+          deleteNote() {
+            this.todos.shift();
+          },
+        },
+      });
+
+      vm.component("note", {
+        props: ["content"],
+        template: `
+            <p>{{content}}</p>
+          `,
+      });
+
+      vm.mount("#app");
+    </script> -->
+    <script src="app.js"></script>
+  </body>
+</html>
